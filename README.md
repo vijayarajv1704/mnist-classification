@@ -123,18 +123,18 @@ metrics = pd.DataFrame(model.history.history)
 
 metrics.head()
 
-print("Name:Vinush.CV Reg.No:212222230176 ")
+print("Name:vijayaraj v Reg.No:212222230174 ")
 metrics[['accuracy','val_accuracy']].plot()
 
-print("Name:Vinush.CV Reg.No:212222230176 ")
+print("Name:vijayaraj v Reg.No:212222230174 ")
 metrics[['loss','val_loss']].plot()
 
 x_test_predictions = np.argmax(model.predict(X_test_scaled), axis=1)
 
-print("Name:Vinush.CV Reg.No:212222230176 ")
+print("Name:vijayaraj v Reg.No:212222230174 ")
 print(confusion_matrix(y_test,x_test_predictions))
 
-print("Name:Vinush.CV Reg.No:212222230176 ")
+print("Name:vijayaraj v Reg.No:212222230174 ")
 print(classification_report(y_test,x_test_predictions))
 
 img = image.load_img('9.png')
