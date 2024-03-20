@@ -63,48 +63,47 @@ import pandas as pd
 from sklearn.metrics import classification_report,confusion_matrix
 from tensorflow.keras.preprocessing import image
 
-(x_train,y_train),(x_test,y_test)=mnist.load_data()
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
 
-x_train.shape
+X_train.shape
 
-x_test.shape
+X_test.shape
 
+single_image= X_train[9]
 
-singleimage=x_train[200]
+single_image.shape
 
-
-singleimage.shape
-
-plt.imshow(singleimage)
+plt.imshow(single_image,cmap='gray')
 
 y_train.shape
 
-x_train.min()
+X_train.min()
 
-x_train.max()
+X_train.max()
 
-x_train_scaled=x_train/255
-x_test_scaled=x_test/255
+X_train_scaled = X_train/255.0
+X_test_scaled = X_test/255.0
 
-x_train_scaled.min()
+X_train_scaled.min()
 
-
-x_test_scaled.max()
+X_train_scaled.max()
 
 y_train[0]
 
-y_train_ohe=utils.to_categorical(y_train,10)
-y_test_ohe=utils.to_categorical(y_test,10)
+y_train_onehot = utils.to_categorical(y_train,10)
+y_test_onehot = utils.to_categorical(y_test,10)
 
-y_train_ohe.shape
+type(y_train_onehot)
 
-single_image = x_train[500]
+y_train_onehot.shape
+
+single_image = X_train[500]
 plt.imshow(single_image,cmap='gray')
 
-y_train_ohe[500]
+y_train_onehot[500]
 
-X_train_scaled = x_train_scaled.reshape(-1,28,28,1)
-X_test_scaled = x_test_scaled.reshape(-1,28,28,1)
+X_train_scaled = X_train_scaled.reshape(-1,28,28,1)
+X_test_scaled = X_test_scaled.reshape(-1,28,28,1)
 
 model = keras.Sequential()
 model.add(layers.Input(shape=(28,28,1)))
@@ -117,7 +116,7 @@ model.summary()
 
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics='accuracy')
 
-model.fit(X_train_scaled ,y_train_ohe, epochs=5,batch_size=64,validation_data=(X_test_scaled,y_test_ohe))
+model.fit(X_train_scaled ,y_train_onehot, epochs=5,batch_size=64,validation_data=(X_test_scaled,y_test_onehot))
 
 metrics = pd.DataFrame(model.history.history)
 
@@ -166,29 +165,29 @@ print(x_single_prediction)
 
 ### Training Loss, Validation Loss Vs Iteration Plot:
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/10946613-bc4c-43ef-b28a-64f6602a4420)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/9a57b7a8-bd71-460c-94c2-27ee37fcb5df)
 
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/12fab053-97c3-48ca-80b7-f47dbd7b5386)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/16d365fa-ef96-455c-bad6-40802b4e8dc9)
 
 
 ### Classification Report:
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/a465b6fd-7ba6-45f4-b08f-de2f1d44d2a4)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/659a0b53-c7c7-4882-bec6-2bf23503274f)
 
 
 
 ### Confusion Matrix:
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/5f59f081-b061-4270-ab2d-7542bda8c269)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/071e1c83-672c-446a-9ce5-51805488f351)
 
 
 ### New Sample Data Prediction:
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/fec34469-116a-4dda-9609-ccb5473f7006)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/85343ea1-7fdf-4696-a9a6-4f681c53b55b)
 
 
-![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/9d684335-536c-496c-89a2-403739e12715)
+![image](https://github.com/vijayarajv1704/mnist-classification/assets/121303741/6d0a6b20-b9ee-4121-a3fc-4a935916c692)
 
 
 
